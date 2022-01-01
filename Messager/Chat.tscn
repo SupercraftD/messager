@@ -1,0 +1,130 @@
+[gd_scene load_steps=10 format=2]
+
+[ext_resource path="res://Chat.gd" type="Script" id=1]
+[ext_resource path="res://Oswald-Regular.ttf" type="DynamicFontData" id=2]
+
+[sub_resource type="StyleBoxFlat" id=1]
+bg_color = Color( 0.380392, 0.458824, 0.4, 1 )
+
+[sub_resource type="StyleBoxFlat" id=2]
+bg_color = Color( 0.619608, 0.584314, 0.584314, 1 )
+corner_radius_top_left = 50
+corner_radius_top_right = 50
+corner_radius_bottom_right = 50
+corner_radius_bottom_left = 50
+
+[sub_resource type="StyleBoxFlat" id=6]
+bg_color = Color( 1, 1, 1, 0 )
+
+[sub_resource type="StyleBoxFlat" id=7]
+bg_color = Color( 0.6, 0.6, 0.6, 0 )
+
+[sub_resource type="DynamicFont" id=8]
+size = 27
+outline_size = 1
+outline_color = Color( 0.227451, 0.227451, 0.227451, 1 )
+use_mipmaps = true
+extra_spacing_char = 1
+font_data = ExtResource( 2 )
+
+[sub_resource type="DynamicFont" id=3]
+size = 22
+font_data = ExtResource( 2 )
+
+[sub_resource type="DynamicFont" id=5]
+size = 21
+extra_spacing_char = 1
+font_data = ExtResource( 2 )
+
+[node name="Chat" type="Control"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+script = ExtResource( 1 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Panel" type="Panel" parent="."]
+margin_top = -1.0
+margin_right = 642.0
+margin_bottom = 417.0
+custom_styles/panel = SubResource( 1 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Panel" type="Panel" parent="Panel"]
+margin_left = 74.1748
+margin_top = 33.2063
+margin_right = 580.175
+margin_bottom = 343.206
+custom_styles/panel = SubResource( 2 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="ScrollContainer" type="ScrollContainer" parent="Panel/Panel"]
+margin_left = 24.0
+margin_top = 6.0
+margin_right = 476.0
+margin_bottom = 33.0
+scroll_vertical_enabled = false
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="players" type="Label" parent="Panel/Panel/ScrollContainer"]
+margin_right = 113.0
+margin_bottom = 14.0
+text = "Users Connected:"
+
+[node name="messages" type="TextEdit" parent="Panel/Panel"]
+margin_left = 10.2509
+margin_top = 24.4703
+margin_right = 488.251
+margin_bottom = 288.47
+custom_styles/read_only = SubResource( 6 )
+custom_styles/normal = SubResource( 7 )
+custom_fonts/font = SubResource( 8 )
+readonly = true
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="exit" type="Button" parent="Panel"]
+margin_left = 10.0908
+margin_top = 12.6134
+margin_right = 67.0908
+margin_bottom = 48.6134
+custom_fonts/font = SubResource( 3 )
+text = "Exit"
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="entermessage" type="Control" parent="Panel"]
+margin_right = 40.0
+margin_bottom = 40.0
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="send" type="Button" parent="Panel/entermessage"]
+margin_left = 503.085
+margin_top = 346.402
+margin_right = 586.085
+margin_bottom = 381.402
+custom_fonts/font = SubResource( 5 )
+text = "Send!"
+
+[node name="TextEdit" type="TextEdit" parent="Panel/entermessage"]
+margin_left = 78.2449
+margin_top = 346.612
+margin_right = 496.245
+margin_bottom = 386.612
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[connection signal="pressed" from="Panel/exit" to="." method="_on_exit_pressed"]
+[connection signal="pressed" from="Panel/entermessage/send" to="." method="_on_send_pressed"]
